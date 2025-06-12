@@ -243,10 +243,18 @@ class _DispatchCutFormPageState extends State<DispatchCutFormPage> {
     _caseIdController.text = item.caseNum;
     _onProjectChanged(item.prjId);
     _villageController.text      = item.village;
-    _dispatchDateController.text = DateFormat('yyyy-MM-dd').format(item.dispatchDate);
-    _deadlineController.text     = DateFormat('yyyy-MM-dd').format(item.dueDate);
-    _workDateController.text     = DateFormat('yyyy-MM-dd').format(item.workStartDate);
-    _completeDateController.text = DateFormat('yyyy-MM-dd').format(item.workEndDate);
+    _dispatchDateController.text = item.dispatchDate != null
+        ? DateFormat('yyyy-MM-dd').format(item.dispatchDate!)
+        : '';
+    _deadlineController.text = item.dueDate != null
+        ? DateFormat('yyyy-MM-dd').format(item.dueDate!)
+        : '';
+    _workDateController.text = item.workStartDate != null
+        ? DateFormat('yyyy-MM-dd').format(item.workStartDate!)
+        : '';
+    _completeDateController.text = item.workEndDate != null
+        ? DateFormat('yyyy-MM-dd').format(item.workEndDate!)
+        : '';
     _roadNameController.text     = item.address;
     _startRoadNameController.text = item.startAddr;  // 新增：接收後端 START_ADDR
     _endRoadNameController.text   = item.endAddr;

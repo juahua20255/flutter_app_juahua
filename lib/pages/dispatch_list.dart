@@ -35,15 +35,15 @@ class DispatchItem {
   final String type;
   final String caseNum;
   final String prjId;
-  final DateTime dispatchDate;
-  final DateTime dueDate;
+  final DateTime? dispatchDate;
+  final DateTime? dueDate;
   final String district;
   final String village;
   final String address;
   final String startAddr;
   final String endAddr;
-  final DateTime workStartDate;
-  final DateTime workEndDate;
+  final DateTime? workStartDate;
+  final DateTime? workEndDate;
   final String material;
   final double materialSize;
   final double workLength;
@@ -117,15 +117,15 @@ class DispatchItem {
       type: j['type'] as String? ?? '',
       caseNum: j['case_num'] as String? ?? '',
       prjId: j['prj_id'] as String? ?? '',
-      dispatchDate: parseNullableDate(j['dispatch_date'] as String?) ?? DateTime.now(),
-      dueDate: parseNullableDate(j['due_date'] as String?) ?? DateTime.now(),
+      dispatchDate: parseNullableDate(j['dispatch_date'] as String?),
+      dueDate: parseNullableDate(j['due_date'] as String?),
       district: j['district'] as String? ?? '',
       village: j['cavlge'] as String? ?? '',
       address: j['address'] as String? ?? '',
       startAddr: j['start_addr'] as String? ?? '',
       endAddr: j['end_addr'] as String? ?? '',
-      workStartDate: parseNullableDate(j['work_start_date'] as String?) ?? DateTime.now(),
-      workEndDate: parseNullableDate(j['work_end_date'] as String?) ?? DateTime.now(),
+      workStartDate: parseNullableDate(j['work_start_date'] as String?),
+      workEndDate: parseNullableDate(j['work_end_date'] as String?),
       material: j['material'] as String? ?? '',
       // 以下數字欄位若為 null，一律回傳 0.0
       materialSize:
@@ -481,10 +481,18 @@ class _DispatchListPageState extends State<DispatchListPage> {
     DataCell(Text(item.caseNum)),
     DataCell(Text(item.district)),
     DataCell(Text(item.village)),
-    DataCell(Text(DateFormat('yyyy-MM-dd').format(item.dispatchDate))),
-    DataCell(Text(
-    '${DateFormat('yyyy-MM-dd').format(item.workStartDate)} ~ '
-    '${DateFormat('yyyy-MM-dd').format(item.workEndDate)}')),
+      DataCell(Text(
+        item.dispatchDate != null
+            ? DateFormat('yyyy-MM-dd').format(item.dispatchDate!)
+            : '',
+      )),
+
+      DataCell(Text(
+      '${item.workStartDate != null ? DateFormat('yyyy-MM-dd').format(item.workStartDate!) : ''}'
+          ' ~ '
+          '${item.workEndDate != null ? DateFormat('yyyy-MM-dd').format(item.workEndDate!) : ''}',
+    )),
+
     DataCell(Text(item.prjId)),
     DataCell(Text(item.address)),
     DataCell(
