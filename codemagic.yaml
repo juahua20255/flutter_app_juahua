@@ -1,9 +1,11 @@
 workflows:
   build-android:
-    name: Build Android (Flutter 3.7.2)
-    max_build_duration: 30
+    name: Build Android APK (Flutter 3.7.2)
+    max_build_duration: 60
     environment:
       flutter: 3.7.2
+      vars:
+        JAVA_TOOL_OPTIONS: "-Xmx4096m"
     scripts:
       - name: Get dependencies
         script: flutter pub get
