@@ -1361,12 +1361,30 @@ class _DispatchBaseFormPageState extends State<DispatchBaseFormPage> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Text(
-              '派工單 - 路基改善',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF30475E),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Color(0xFF30475E)),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                  const Center(
+                    child: Text(
+                      '派工單 - 路基改善',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF30475E),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 8),
